@@ -35,16 +35,17 @@ Amazon AppStream 2\.0 sends the following metrics and dimension information to A
 AppStream 2\.0 sends metrics to CloudWatch one time every minute\. The `AWS/AppStream` namespace includes the following metrics\.
 
 
-| Metric | Description | 
-| --- | --- | 
-| ActualCapacity |  The total number of instances that are available for streaming or are currently streaming\. <pre>ActualCapacity = AvailableCapacity + InUseCapacity</pre> Units: Count Valid statistics: Average, Minimum, Maximum  | 
-|  AvailableCapacity  |  The number of idle instances currently available for user sessions\. <pre>AvailableCapacity = ActualCapacity - InUseCapacity</pre> Units: Count Valid statistics: Average, Minimum, Maximum  | 
-| CapacityUtilization |  The percentage of instances in a fleet that are being used, using the following formula\. <pre>CapacityUtilization = (InUseCapacity/ActualCapacity) * 100</pre> Monitoring this metric helps with decisions about increasing or decreasing the value of a fleet's desired capacity\. Units: Percent Valid statistics: Average, Minimum, Maximum  | 
-|  DesiredCapacity  |  The total number of instances that are either running or pending\. This represents the total number of concurrent streaming sessions your fleet can support in a steady state\. <pre>DesiredCapacity = ActualCapacity + PendingCapacity</pre> Units: Count Valid statistics: Average, Minimum, Maximum  | 
-|  InUseCapacity  |  The number of instances currently being used for streaming sessions\. One `InUseCapacity` count represents one streaming session\. Units: Count Valid statistics: Average, Minimum, Maximum  | 
-|  PendingCapacity  |  The number of instances being provisioned by AppStream 2\.0\. Represents the additional number of streaming sessions the fleet can support after provisioning is complete\. When provisioning starts, it usually takes 10\-20 minutes for an instance to become available for streaming\. Units: Count Valid statistics: Average, Minimum, Maximum  | 
-| RunningCapacity |  The total number of instances currently running\. Represents the number of concurrent streaming sessions that can be supported by the fleet in its current state\. This metric is provided for Always\-On fleets only, and has the same value as the `ActualCapacity` metric\. Units: Count Valid statistics: Average, Minimum, Maximum  | 
-|  InsufficientCapacityError  |  The number of session requests rejected due to lack of capacity\. You can set alarms to use this metric to be notified of users waiting for streaming sessions\. Units: Count Valid statistics: Average, Minimum, Maximum, Sum  | 
+| Metric | Description |
+| --- | --- |
+| ActualCapacity | The total number of instances that are available for streaming or are currently streaming.<br><br>`ActualCapacity = AvailableCapacity + InUseCapacity`<br><br>Units: Count<br>Valid statistics: Average, Minimum, Maximum |
+| AvailableCapacity | The number of idle instances currently available for user sessions.<br><br>`AvailableCapacity = ActualCapacity - InUseCapacity`<br><br>Units: Count<br>Valid statistics: Average, Minimum, Maximum |
+| CapacityUtilization | The percentage of instances in a fleet that are being used, using the following formula:<br><br>`CapacityUtilization = (InUseCapacity/ActualCapacity) * 100`<br><br>Monitoring this metric helps with decisions about increasing or decreasing the value of a fleet's desired capacity.<br><br>Units: Percent<br>Valid statistics: Average, Minimum, Maximum |
+| DesiredCapacity | The total number of instances that are either running or pending. This represents the total number of concurrent streaming sessions your fleet can support in a steady state.<br><br>`DesiredCapacity = ActualCapacity + PendingCapacity`<br><br>Units: Count<br>Valid statistics: Average, Minimum, Maximum |
+| InUseCapacity | The number of instances currently being used for streaming sessions. One `InUseCapacity` count represents one streaming session.<br><br>Units: Count<br>Valid statistics: Average, Minimum, Maximum |
+| PendingCapacity | The number of instances being provisioned by AppStream 2.0. Represents the additional number of streaming sessions the fleet can support after provisioning is complete. When provisioning starts, it usually takes 10-20 minutes for an instance to become available for streaming.<br><br>Units: Count<br>Valid statistics: Average, Minimum, Maximum |
+| RunningCapacity | The total number of instances currently running. Represents the number of concurrent streaming sessions that can be supported by the fleet in its current state. This metric is provided for Always-On fleets only, and has the same value as the `ActualCapacity` metric.<br><br>Units: Count<br>Valid statistics: Average, Minimum, Maximum |
+| InsufficientCapacityError | Tracks rejected streaming session requests due to capacity issues.<br><br>Behavior:<br>- Reports 0: Successful connection attempt<br>- Reports 1: Failed connection attempt due to capacity<br>- No data: No connection attempts made<br><br>Timing: Only reported when connection attempts occur (not on regular 60-second intervals)<br>Trigger point: When user clicks an application in catalog, before authentication<br>Useful for: Setting alarms to monitor capacity issues and user wait times<br><br>Units: Count<br>Valid statistics: Average, Minimum, Maximum, Sum |
+
 
 ### Dimensions for Amazon AppStream 2\.0 Metrics<a name="appstream-dimensions"></a>
 
